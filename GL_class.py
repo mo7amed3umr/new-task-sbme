@@ -21,7 +21,7 @@ class pyqtopengl(QOpenGLWidget):
         self.paint4 = False
 
     def initializeGL(self):
-        self.paint4 = True
+        self.paint3 = True
         # glClearColor(1.0,0.0,1.0,0.0)
         # glClear(GL_COLOR_BUFFER_BIT)
 
@@ -49,7 +49,7 @@ class pyqtopengl(QOpenGLWidget):
 
         if self.paint3:
             self.loadScene()
-            gluSphere(gluNewQuadric(),5, 13, 13)
+            glutWireSphere(5, 13, 13)
 
         if self.paint4:
             pg.init()
