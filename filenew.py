@@ -41,13 +41,14 @@ def display():
     global rotAngle
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
     glPushMatrix()
-    glClear(GL_COLOR_BUFFER_BIT)
-    glPushMatrix()
+    # glClear(GL_COLOR_BUFFER_BIT)
+    # glPushMatrix()
     glRotatef(angle2, 1.0, 0.0, 0.0)
     glRotatef(angle, 0.0, 1.0, 0.0)
 
+
+
     glColor3f(1.0, 1.0, 0.0)
-    glTranslatef(0.0,0.0,0.3)
     glRotatef(rotAngle, 0.0, 0.0, 1.0)
 
 
@@ -55,16 +56,17 @@ def display():
     glPushMatrix()
     glBegin(GL_LINES)
     glLineWidth(2.5)
-    glVertex3f(0.0, -2.5, 0)
-    glVertex3f(0.0, 2.5, 0)
+    glVertex3f(0.0, -0.4, 0)
+    glVertex3f(0.0, 0.4, 0)
     glEnd
     glPopMatrix()
-    glPopMatrix()
+
+
 
     glPushMatrix()
     glColor3f(1.0,1.0,0.0)
 
-    glutSolidSphere(0.7, 20, 10)
+    glutWireSphere(0.1, 20, 10)
     glPopMatrix()
 
     glPopMatrix()
@@ -119,6 +121,8 @@ def relaxition(i, array, T2, T1, Mo):
         display()
 
 
+
+
         plt.plot(x_Mxy, y_Mxy, label='Mxy')
         plt.plot(x_Mz, y_Mz, label='Mz')
         x = x + 1
@@ -134,36 +138,34 @@ def opengl():
     glutInit(sys.argv)
     glutInitDisplayMode(0)
     glutInitWindowSize(500, 500)
-    glutInitWindowPosition(400, 400)
+    glutInitWindowPosition(900, 500)
     glutCreateWindow(name)
 
     init()
     glutMouseFunc(mouse)
     glutMotionFunc(motion)
     glutDisplayFunc(display)
+
     glutReshapeFunc(reshape)
     # glutKeyboardFunc(keyboard)
     # rotateangle()
+    display()
     plotting()
-    glutMainLoop()
+    # glutMainLoop()
 
 
 def plotting():
-    z = rotate(60, 5)
+    z = rotate(120, 5)
     ani = FuncAnimation(plt.gcf(), relaxition, fargs=(z, 3, 3, 5,), interval=1000)
     plt.show()
 def main():
-    # thread_var = threading.Thread(target=opengl)
-    # thread_var.start()
     opengl()
-
-
    # z = rotate(60, 5)
    # ani = FuncAnimation(plt.gcf(), relaxition, fargs=(z, 3, 3, 5,), interval=1000)
    # anix = FuncAnimation(plt.gcf(), opengl, interval=500)
    # plt.show()
    # mtplib()
-    return
+
 
 if __name__ == '__main__':
     main()
